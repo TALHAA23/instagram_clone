@@ -1,3 +1,4 @@
+import { useUser } from "../hooks/UserProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -10,17 +11,6 @@ import {
   faMessage,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, NavLink } from "react-router-dom";
-
-const navigations = [
-  ["home", "/home", faHome],
-  ["search", "", faSearch],
-  ["explore", "/explore", faMap],
-  ["reels", "/reels", faVideo],
-  ["notifications", "/notificaitons", faHeart],
-  ["create", "", faPlus],
-  ["messages", "/messages", faMessage],
-  ["profile", "/profile", faPerson],
-];
 
 function hiddenNavAtSmallScreenCondition(title) {
   return title.match(/search|notifications/i);
@@ -37,6 +27,19 @@ export function TopNav() {
 }
 
 export function Nav() {
+  const user = useUser();
+  // const user = null;
+  const navigations = [
+    ["home", "/", faHome],
+    ["search", "", faSearch],
+    ["explore", "/explore", faMap],
+    ["reels", "/reels", faVideo],
+    ["notifications", "/notificaitons", faHeart],
+    ["create", "", faPlus],
+    ["messages", "/messages", faMessage],
+    ["profile", `/${user?.email || "profiles/?redirect=/login"}`, faPerson],
+  ];
+
   const navElements = navigations.map(([title, url, icon]) => (
     <NavLink
       to={url}
@@ -53,8 +56,10 @@ export function Nav() {
   ));
   return (
     <nav
-      className="absolute md:relative bottom-0 flex md:flex-col justify-around md:justify-center
-       w-full col-span-1 px-3 py-2 border-t-2 md:border-t-0 md:border-r-2 border-black dark:border-white
+      className="fixed h-auto w-full md:w-auto md:h-full border z-10 bottom-0 
+      flex md:flex-col justify-around md:justify-center
+       col-span-1 px-3 py-2 border-t-2 md:border-t-0 md:border-r-2
+       border-black dark:border-white bg-white dark:bg-black
       lg:px-4 
     "
     >

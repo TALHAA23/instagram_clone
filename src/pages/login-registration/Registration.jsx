@@ -5,6 +5,8 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { signupUser } from "../../assets/firebase/auth";
+import { userDefaults } from "../../assets/userDefaults";
+import { createNewUser } from "../../assets/firebase/utils";
 import { Form } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
@@ -17,7 +19,9 @@ export async function action({ request }) {
   const data = { username, email, password };
 
   try {
-    await signupUser(data);
+    const userEmailAndUid = await signupUser(data);
+    const userDefault = userDefaults({ username, ...userEmailAndUid });
+    await createNewUser(userDefault);
     return redirect("/login");
   } catch (err) {
     return err.message.split("(")[1];

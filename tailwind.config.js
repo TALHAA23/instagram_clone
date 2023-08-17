@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       gridTemplateColumns: {
-        'customCol': 'auto 1fr auto'
+        'customCol_sm': '50px 1fr auto',
+        'customCol_lg': '200px 1fr auto',
       }
     },
   },

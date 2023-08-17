@@ -10,7 +10,7 @@ import {
 // login
 export async function signInUser(creds) {
     try {
-        await signInWithEmailAndPassword(auth, creds.email, creds.password)
+        await signInWithEmailAndPassword(auth, creds.email, creds.password);
     } catch (err) {
         throw new Error(err.message)
     }
@@ -24,12 +24,15 @@ export async function signOutUser() {
     }
 }
 
-
 // signup
 
 export async function signupUser(creds) {
     try {
-        await createUserWithEmailAndPassword(auth, creds.email, creds.password)
+        const user = await createUserWithEmailAndPassword(auth, creds.email, creds.password)
+        return {
+            email: user.user.email,
+            uid: user.user.uid
+        }
     } catch (err) {
         throw new Error(err.message)
     }

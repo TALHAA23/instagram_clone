@@ -1,30 +1,26 @@
-import Button from "../../components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
+import Button from "../../components/Button";
+import { useAccountInfoAndUpdater } from "../../hooks/AccountProvider";
 
-export default function ProfileHead() {
+export default function ProfileTop() {
+  const { accountInfo } = useAccountInfoAndUpdater();
+  const { posts, followers, followings } = accountInfo.summary;
+  const summary = [
+    ["posts", posts.length],
+    ["followings", followings.length],
+    ["followers", followers.length],
+  ];
   return (
     <div className="relative h-[50vh] space-y-4 w-full py-6 px-3 sm:px-10 mt-10 sm:mt-0">
-      <ProfileHeadImgAndSummary />
+      <ProfileHeadImgAndSummary about={accountInfo.about} summary={summary} />
       <StatusBar />
-      <div
-        className="absolute bottom-0 w-[90%] py-4 px-10 text-center sm:invisible flex justify-between
-        border-t-2 border-black dark:border-white
-        "
-      >
-        {[
-          ["posts", 0],
-          ["followings", 0],
-          ["followers", 0],
-        ].map(([title, count]) => (
-          <SmallScreenAccountSummary title={title} count={count} />
-        ))}
-      </div>
+      <SmallScreenAccountSummary summary={summary} />
     </div>
   );
 }
 
-function ProfileHeadImgAndSummary() {
+function ProfileHeadImgAndSummary({ about, summary }) {
   return (
     <div className="flex  gap-5">
       <div className=" w-28 sm:w-36 lg:mx-20 aspect-square flex justify-center items-center rounded-full border border-slate-600">
@@ -33,33 +29,37 @@ function ProfileHeadImgAndSummary() {
       <div>
         <div className="h-full flex flex-col justify-around">
           <div className="space-y-3 sm:space-x-3">
-            <span className="font-semibold text-lg">talhasifat23</span>
+            <span className="font-semibold text-lg">{about.username}</span>
             <br className="sm:hidden" />
             <Button text="Edit profile" />
             <Button text="View archive" />
             <FontAwesomeIcon icon={faGear} size="lg" />
           </div>
           <div className="hidden sm:flex justify-between">
-            {[
-              ["posts", 0],
-              ["followings", 0],
-              ["followers", 0],
-            ].map(([title, count]) => (
+            {summary.map(([title, count]) => (
               <MediumAndAboveAccountSummary title={title} count={count} />
             ))}
           </div>
-          <div className="font-semibold">i am tlaha 😍</div>
+          <div className="font-semibold">{about.username} 😍</div>
         </div>
       </div>
     </div>
   );
 }
 
-function SmallScreenAccountSummary({ title, count }) {
+function SmallScreenAccountSummary({ summary }) {
   return (
-    <div>
-      <p className="text-md text-slate-600 font-semibold">{count}</p>{" "}
-      <div>{title}</div>{" "}
+    <div
+      className="absolute bottom-0 w-[90%] py-4 px-10 text-center sm:invisible flex justify-between
+    border-t-2 border-black dark:border-white
+    "
+    >
+      {summary.map(([title, count]) => (
+        <div>
+          <p className="text-md text-slate-600 font-semibold">{count}</p>{" "}
+          <div>{title}</div>{" "}
+        </div>
+      ))}
     </div>
   );
 }
@@ -72,12 +72,6 @@ function MediumAndAboveAccountSummary({ title, count }) {
   );
 }
 
-function Status() {
-  return (
-    <div className=" w-16 aspect-square rounded-full border border-white"></div>
-  );
-}
-
 function StatusBar() {
   return (
     <div className="flex gap-2">
@@ -85,5 +79,11 @@ function StatusBar() {
       <Status />
       <Status />
     </div>
+  );
+}
+
+function Status() {
+  return (
+    <div className=" w-16 aspect-square rounded-full border border-black dark:border-white"></div>
   );
 }
