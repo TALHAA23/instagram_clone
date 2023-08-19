@@ -17,6 +17,8 @@ export function userDefaults(creds) {
             followers: [],
             followings: [],
         },
-        settings: null
+        confidentialData: {
+            settings: null
+        }
     }
 }

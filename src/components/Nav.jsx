@@ -18,7 +18,10 @@ function hiddenNavAtSmallScreenCondition(title) {
 
 export function TopNav() {
   return (
-    <nav className="w-full fixed top-0  gap-2 sm:hidden flex justify-around py-3 px-1">
+    <nav
+      className="w-full fixed z-10 top-0  gap-2 sm:hidden flex justify-around py-3 px-1
+    bg-white dark:bg-black"
+    >
       <img src="df" alt="instagram" className=" grow-[2] " />
       <FontAwesomeIcon icon={faSearch} size="lg" />
       <FontAwesomeIcon icon={faHeart} size="lg" />
@@ -31,7 +34,7 @@ export function Nav() {
   // const user = null;
   const navigations = [
     ["home", "/", faHome],
-    ["search", "", faSearch],
+    ["search", "/t@t.com", faSearch],
     ["explore", "/explore", faMap],
     ["reels", "/reels", faVideo],
     ["notifications", "/notificaitons", faHeart],

@@ -15,12 +15,12 @@ export default function HomeLayout() {
       grid grid-cols-1 md:grid-cols-[50px_1fr_auto] lg:grid-cols-[200px_1fr_auto]
     "
     >
-      <button
+      {/* <button
         onClick={toggleMode}
         className=" text-blue-800 z-10 h-5 border border-white absolute top-1/4 right-0 inset-2"
       >
         toggle darkmode
-      </button>
+      </button> */}
       <TopNav />
       <Nav />
       <main className=" md:col-start-2 md:col-end-3">

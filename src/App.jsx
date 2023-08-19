@@ -18,6 +18,7 @@ import ProfileLayout, {
   loader as profileLayoutLoader,
 } from "./pages/profile/ProfileLayout";
 import ProfilePosts from "./pages/Profile/ProfilePosts";
+import OpenedPost from "./components/Post/Post";
 
 function App() {
   const routes = createBrowserRouter(
@@ -34,6 +35,7 @@ function App() {
             <Route path="tagged" element={<h1>Tages Goes Here</h1>} />
           </Route>
           <Route path="explore" element={<h1>Explore section</h1>} />
+          <Route path="p/:somepost" element={<OpenedPost />} />
         </Route>
         <Route path="/login" element={<Login />} action={loginAction} />
         <Route

@@ -9,7 +9,14 @@ export default function ProfilePosts() {
     <div className="relative">
       <PostGrid>
         {posts.map((post) => (
-          <div className=" aspect-square border border-pink-950">{post}</div>
+          <div className=" aspect-square border border-pink-950">
+            {console.log(post)}
+            <img
+              className=" object-contain aspect-square"
+              src={post}
+              alt="img"
+            />
+          </div>
         ))}
       </PostGrid>
     </div>
