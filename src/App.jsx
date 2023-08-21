@@ -14,17 +14,21 @@ import Registration, {
 } from "./pages/login-registration/Registration";
 
 import HomeLayout from "./components/HomeLayout";
+import Followings from "./pages/Followings/Followings";
 import ProfileLayout, {
   loader as profileLayoutLoader,
 } from "./pages/profile/ProfileLayout";
 import ProfilePosts from "./pages/Profile/ProfilePosts";
-import OpenedPost from "./components/Post/Post";
+import Post from "./components/Post/Post";
+
+import UploadMedia from "./assets/firebase/MediaUpload";
 
 function App() {
   const routes = createBrowserRouter(
     createRoutesFromElements(
       <>
         <Route path="/" element={<HomeLayout />}>
+          <Route index element={<Followings />} />
           <Route
             path=":useremail"
             element={<ProfileLayout />}
@@ -35,7 +39,8 @@ function App() {
             <Route path="tagged" element={<h1>Tages Goes Here</h1>} />
           </Route>
           <Route path="explore" element={<h1>Explore section</h1>} />
-          <Route path="p/:somepost" element={<OpenedPost />} />
+          <Route path=":section/p/:postid" element={<Post />} />
+          <Route path="/m/upload" element={<UploadMedia />} />
         </Route>
         <Route path="/login" element={<Login />} action={loginAction} />
         <Route

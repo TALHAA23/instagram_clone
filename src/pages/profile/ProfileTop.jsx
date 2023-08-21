@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../components/Buttons.jsx/Button";
 import { useAccountInfoAndUpdater } from "../../hooks/AccountProvider";
+import StatusBar from "../../components/StatusBar";
 
 export default function ProfileTop() {
   const { accountInfo } = useAccountInfoAndUpdater();
@@ -69,21 +70,5 @@ function MediumAndAboveAccountSummary({ title, count }) {
     <div>
       <span className="font-semibold">{count}</span> <span>{title}</span>
     </div>
-  );
-}
-
-function StatusBar() {
-  return (
-    <div className="flex gap-2">
-      <Status />
-      <Status />
-      <Status />
-    </div>
-  );
-}
-
-function Status() {
-  return (
-    <div className=" w-16 aspect-square rounded-full border border-black dark:border-white"></div>
   );
 }

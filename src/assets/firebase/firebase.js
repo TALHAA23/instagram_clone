@@ -12,6 +12,9 @@ import {
     getFirestore,
     collection
 } from "firebase/firestore"
+import {
+    getStorage
+} from 'firebase/storage'
 
 const firebaseConfig = {
     apiKey: "AIzaSyDxB4rssVl4lef2FaBGdd4_3tG6Kk0f_OU",
@@ -28,3 +31,4 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app)
 export const usersCollection = collection(db, 'users');
 export const auth = getAuth()
+export const storage = getStorage(app);

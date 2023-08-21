@@ -11,6 +11,7 @@ import {
   faMessage,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function hiddenNavAtSmallScreenCondition(title) {
   return title.match(/search|notifications/i);
@@ -29,9 +30,16 @@ export function TopNav() {
   );
 }
 
-export function Nav() {
+export function Nav(props) {
   const user = useUser();
   // const user = null;
+  useEffect(() => {
+    const createNewPost = document.querySelector("nav .createNewPost");
+    const dialogBox = document.querySelector("dialog");
+    createNewPost.onclick = () => {
+      dialogBox.showModal();
+    };
+  }, []);
   const navigations = [
     ["home", "/", faHome],
     ["search", "/t@t.com", faSearch],
@@ -46,8 +54,9 @@ export function Nav() {
   const navElements = navigations.map(([title, url, icon]) => (
     <NavLink
       to={url}
-      className={`${
-        hiddenNavAtSmallScreenCondition(title) && "hidden"
+      className={`${hiddenNavAtSmallScreenCondition(title) && "hidden"}
+      ${
+        title == "create" && "createNewPost"
       } rounded-md sm:block md:py-3 space-x-2 hover:scale-150 
       md:hover:scale-100 md:hover:bg-[#9c999996] dark:md:hover:bg-[#abaaaa43]
       lg:px-6

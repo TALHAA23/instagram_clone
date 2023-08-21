@@ -4,7 +4,7 @@ import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 export default function PostHead() {
   return (
     <div className="flex gap-3 items-center px-2 h-14">
-      <Image />
+      <ProfilePhoto />
       <TextUsername />
       <BorderlessButton text="Follow" />
       <FontAwesomeIcon icon={faEllipsis} className="ml-auto" />
@@ -15,8 +15,7 @@ export default function PostHead() {
 function TextUsername() {
   return <h3>theInstgramusername</h3>;
 }
-
-function Image() {
+function ProfilePhoto() {
   return (
     <div className="w-10 rounded-full border border-black">
       <img className="object-contain aspect-square" src="/instagram-text.png" />

@@ -10,7 +10,7 @@ export default function PostUtils() {
   const utils = [faHeart, faComment, faPaperPlane, faBookmark];
 
   return (
-    <div className="w-full flex gap-3 justify-normal">
+    <div className="w-full p-1 flex gap-3 justify-normal">
       {utils.map((util) => (
         <FontAwesomeIcon icon={util} size="xl" className="last:ml-auto" />
       ))}

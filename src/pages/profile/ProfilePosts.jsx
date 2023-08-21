@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import PostGrid from "../../components/PostsGrid";
 import { useAccountInfoAndUpdater } from "../../hooks/AccountProvider";
 
@@ -9,14 +10,16 @@ export default function ProfilePosts() {
     <div className="relative">
       <PostGrid>
         {posts.map((post) => (
-          <div className=" aspect-square border border-pink-950">
-            {console.log(post)}
-            <img
-              className=" object-contain aspect-square"
-              src={post}
-              alt="img"
-            />
-          </div>
+          <Link to="p/insta">
+            <div className=" aspect-square border border-pink-950">
+              {console.log(post)}
+              <img
+                className=" object-contain aspect-square"
+                src={post}
+                alt="img"
+              />
+            </div>
+          </Link>
         ))}
       </PostGrid>
     </div>
