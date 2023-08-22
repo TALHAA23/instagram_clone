@@ -1,10 +1,10 @@
-export default function Comment() {
+export default function Comment({ text }) {
   return (
     <div className="w-full flex items-start gap-2 my-1">
       <ProfilePicture />
       <div className="w-11/12">
         <CommentHead />
-        <CommentText />
+        <CommentText text={text} />
       </div>
     </div>
   );
@@ -31,11 +31,5 @@ function CommentHead() {
 }
 
 function CommentText({ text }) {
-  return (
-    <p>
-      Hahhah this is an awsome commnet i see Hahhah this is an awsome commnet i
-      see Hahhah this is an awsome commnet i see Hahhah this is an awsome
-      commnet i see Hahhah this is an awsome commnet i see
-    </p>
-  );
+  return <p>{text}</p>;
 }

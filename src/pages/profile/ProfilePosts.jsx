@@ -10,12 +10,11 @@ export default function ProfilePosts() {
     <div className="relative">
       <PostGrid>
         {posts.map((post) => (
-          <Link to="p/insta">
+          <Link to="p/insta" state={post}>
             <div className=" aspect-square border border-pink-950">
-              {console.log(post)}
               <img
                 className=" object-contain aspect-square"
-                src={post}
+                src={post.url}
                 alt="img"
               />
             </div>

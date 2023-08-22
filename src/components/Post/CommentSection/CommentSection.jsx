@@ -1,28 +1,27 @@
 import { useState } from "react";
-import PostDescription from "../PostDescription";
+import Caption from "../PostCaption";
 import Comment from "./Comment";
 
-export default function CommentSection() {
+export default function CommentSection({ comments, caption }) {
   const [showCommentSection, setShowCommentSection] = useState(false);
-
   function toggleCommentSection() {
     setShowCommentSection((prevValue) => !prevValue);
   }
   return (
     <div className="md:grow text-sm border border-black dark:border-white">
       <div className="md:hidden">
-        <PostDescription />
+        <Caption caption={caption} />
       </div>
 
-      <CommentSectionButton toggleCommentSection={toggleCommentSection} />
+      <ViewAllComments toggleCommentSection={toggleCommentSection} />
 
       <div
         className={`h-4/5 w-full px-2 overflow-y-scroll bg-white dark:bg-black
         absolute z-10 bottom-0 transition-transform md:relative md:scale-100 md:h-full 
-        scale-x-${showCommentSection ? "100" : "0"}`}
+        scale-x-${showCommentSection ? "100" : "0"} `}
       >
         <div className="hidden md:block">
-          <PostDescription />
+          <Caption caption={caption} />
         </div>
 
         <button onClick={() => setShowCommentSection(false)}>
@@ -30,14 +29,16 @@ export default function CommentSection() {
         </button>
 
         <div>
-          <Comment />
+          {comments?.map((comment) => (
+            <Comment text={comment} />
+          ))}
         </div>
       </div>
     </div>
   );
 }
 
-function CommentSectionButton({ toggleCommentSection }) {
+function ViewAllComments({ toggleCommentSection }) {
   return (
     <div onClick={toggleCommentSection} className="md:hidden cursor-pointer">
       view all 5 comments
