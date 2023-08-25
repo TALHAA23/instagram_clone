@@ -16,6 +16,7 @@ import {
     getStorage
 } from 'firebase/storage'
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyDxB4rssVl4lef2FaBGdd4_3tG6Kk0f_OU",
     authDomain: "insta-clone-24260.firebaseapp.com",
