@@ -15,7 +15,7 @@ export default function ProfileNavigation() {
     ["tagged", faTag, "tagged"],
   ];
   const navigationElements = navigations.map(([title, icon, url]) => (
-    <NavLink to={url} className="w-1/3 text-center">
+    <NavLink to={url} key={url} className="w-1/3 text-center">
       <div className="w-full h-[2px] mb-1  bg-white"></div>
       <span>
         <FontAwesomeIcon icon={icon} />

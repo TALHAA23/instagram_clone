@@ -5,7 +5,6 @@ import { useState, useRef, useEffect } from "react";
 import StatusBar from "../../components/StatusBar";
 import Progressbar from "../../components/ProgressBar";
 import { useUser } from "../../hooks/UserProvider";
-import { addPost } from "../../assets/firebase/utils";
 
 export default function Followings() {
   const dialogBoxRef = useRef();
@@ -18,12 +17,11 @@ export default function Followings() {
     dialogBoxRef.current.close();
     const file = event.target[0]?.files[0];
     const caption = event.target[2]?.value;
-    const uploadTask = uploadMedia(`${email}/posts`, file);
+    const uploadTask = uploadMedia(`${email}/posts`, file, caption);
     uploadTask.on("state_changed", (snapshot) => {
       const progress = Math.round(
         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
       );
-      uploadTask.then((taskInfo) => addPost(file.name, caption));
       setProgrss(progress);
     });
   }

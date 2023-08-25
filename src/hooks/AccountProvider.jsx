@@ -6,6 +6,7 @@ export const useAccountInfoAndUpdater = () => useContext(UseAccount);
 
 export default function AccountProvider({ children }) {
   const [accountInfo, setAccountInfo] = useState();
+
   function updateAccountInfo(newAccountInfo) {
     setAccountInfo(newAccountInfo);
   }

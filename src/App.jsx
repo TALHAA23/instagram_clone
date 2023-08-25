@@ -22,6 +22,7 @@ import ProfilePosts from "./pages/Profile/ProfilePosts";
 import Post from "./components/Post/Post";
 
 import UploadMedia from "./assets/firebase/MediaUpload";
+import AccountUtilsProvider from "./hooks/AccountUtilsProvider";
 
 function App() {
   const routes = createBrowserRouter(
@@ -30,7 +31,7 @@ function App() {
         <Route path="/" element={<HomeLayout />}>
           <Route index element={<Followings />} />
           <Route
-            path=":useremail"
+            path=":userUid"
             element={<ProfileLayout />}
             loader={profileLayoutLoader}
           >
@@ -55,7 +56,9 @@ function App() {
   return (
     <UserProvider>
       <AccountProvider>
-        <RouterProvider router={routes} />;
+        <AccountUtilsProvider>
+          <RouterProvider router={routes} />;
+        </AccountUtilsProvider>
       </AccountProvider>
     </UserProvider>
   );

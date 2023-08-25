@@ -42,17 +42,18 @@ export function Nav(props) {
   }, []);
   const navigations = [
     ["home", "/", faHome],
-    ["search", "/t@t.com", faSearch],
+    ["search", "/xS43VsnNbSYGtwWYgWGhDJpb7Yk2", faSearch],
     ["explore", "/explore", faMap],
     ["reels", "/reels", faVideo],
     ["notifications", "/notificaitons", faHeart],
     ["create", "", faPlus],
     ["messages", "/messages", faMessage],
-    ["profile", `/${user?.email || "profiles/?redirect=/login"}`, faPerson],
+    ["profile", `/${user?.uid || "profiles/?redirect=/login"}`, faPerson],
   ];
 
   const navElements = navigations.map(([title, url, icon]) => (
     <NavLink
+      key={url}
       to={url}
       className={`${hiddenNavAtSmallScreenCondition(title) && "hidden"}
       ${

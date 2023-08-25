@@ -10,7 +10,7 @@ import {
 } from "firebase/auth";
 import {
     getFirestore,
-    collection
+    collection,
 } from "firebase/firestore"
 import {
     getStorage

@@ -2,15 +2,15 @@ import { Outlet } from "react-router-dom";
 import { useAccountInfoAndUpdater } from "../../hooks/AccountProvider";
 import ProfileNavigation from "./ProfileNavigation";
 import { defer, redirect, useLoaderData, Await } from "react-router-dom";
-import { Suspense } from "react";
-import { getAccountByEmail } from "../../assets/firebase/utils";
+import { Suspense, useEffect } from "react";
+import { getAccountByUid } from "../../assets/firebase/utils";
 import ProfileTop from "./ProfileTop";
 
 export async function loader({ params, request }) {
-  const { useremail } = params;
+  const { userUid } = params;
   const redirectParam = new URL(request.url).searchParams.get("redirect");
   if (redirectParam) throw redirect(redirectParam);
-  const userAccountPromise = getAccountByEmail(useremail);
+  const userAccountPromise = getAccountByUid(userUid);
   return defer({ userAccountPromise });
 }
 
@@ -20,6 +20,7 @@ export default function ProfileLayout() {
   function renderProfile(accountInfo) {
     const { updateAccountInfo } = useAccountInfoAndUpdater();
     updateAccountInfo(accountInfo[0]);
+    // useEffect(() => updateAccountInfo(accountInfo[0]), []);
     return (
       <>
         <ProfileTop />
